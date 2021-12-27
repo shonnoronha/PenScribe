@@ -29,16 +29,31 @@ app.get('/blogs/create', function (req, res) {
   res.render('create');
 });
 
-app.post('/blogs', (req, res)=>{
-    const { title, description, content } = req.body;
-    console.log(title, description, content);
-    res.redirect('/');
+app.get('/blogs/detail/:id', (req, res)=>{
+    const id = req.params.id;
+    Blog.findById(id)
+        .then(blog=>{
+            res.render('detail', { blog });
+        })
+        .catch(err=>console.log(err));
+});
+
+app.delete('/blogs/:id', (req, res)=>{
+    const id = req.params.id;
+    Blog.findByIdAndDelete(id)
+        .then(data=>{
+            res.json({redirect : '/'});
+        })
+        .catch(err=>console.log(err));
 })
 
-// Blog.create({
-//     title: 'TEST2',
-//     description: 'TESTING MODEL SECOND',
-//     content: 'THIS IS WORKING!'
-//   })
-//     .then(blog=>res.json(blog))
-//     .catch(err=>res.send(err))
+app.post('/blogs', (req, res)=>{
+    const { title, description, content } = req.body;
+    Blog.create({
+        title,
+        description,
+        content
+      })
+        .then(_blog=>res.redirect('/'))
+        .catch(err=>console.log(err));
+});

@@ -3,10 +3,11 @@
 ### TODOS
 - [x] Blog Model
 - [ ] User Model
-- [ ] Create Blog Form
-- [ ] Edit Blog For
-- [ ] Blog Details Page
-- [ ] Blog Post Form
+- [x] Create Blog Form
+- [ ] Edit Blog Form
+- [x] Delete Blog
+- [x] Blog Details Page
+- [x] Blog Post Form
 - [ ] User Login Form
 - [ ] User Sign Up
 - [ ] Conditional Template
