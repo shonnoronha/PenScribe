@@ -11,17 +11,24 @@
         <h1><%= blog.title %></h1>
         <p><%= blog.description %> </p>
         <p><%= blog.content %> </p>
-        <button id="<%= blog.id %> " onclick="request()">Delete Blog</button>
+        <p>Created On : <%= blog.createdAt %> </p>
+        <p>Last Updated On : <%= blog.updatedAt %> </p>
+        <button id="<%= blog.id %> " class="deleteButton" onclick="request()">Delete Blog</button>
+        <button id="<%= blog.id %>" class="updateButton" onclick="edit()">Update Blog</button>
     <% } %> 
     <script>
-        const button = document.querySelector('button');
+        const deleteButton = document.querySelector('.deleteButton');
+        const updateButton = document.querySelector('.updateButton');
         const request = () => {
-            fetch(`/blogs/${button.id}`, {
+            fetch(`/blogs/${deleteButton.id}`, {
                 method : 'DELETE'
             })
                 .then(data=>data.json())
                 .then(data=>location.assign(data.redirect))
                 .catch(err=>console.log(err));
+        }
+        const edit = () => {
+            location.assign(`update/${updateButton.id}`);
         }
     </script>
 </body>

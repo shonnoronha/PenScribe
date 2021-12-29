@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+</head>
+<body>
+    <% if (blog){ %> 
+        <form action="/blogs/detail/update/<%= blog._id %> " method="post">
+            <label for="title">Title</label>
+            <input id="title" name="title" value="<%= blog.title %> " required>
+            <label for="description">description</label>
+            <input id="description" name="description" value="<%= blog.description %> " required>
+            <label for="content">content</label>
+            <input id="content" name="content" value="<%= blog.content %> " required>
+            <button>Update</button>
+        </form>
+    <% } %> 
+</body>
+</html>

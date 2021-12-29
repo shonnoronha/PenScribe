@@ -49,11 +49,20 @@ app.delete('/blogs/:id', (req, res)=>{
 
 app.post('/blogs', (req, res)=>{
     const { title, description, content } = req.body;
-    Blog.create({
-        title,
-        description,
-        content
-      })
+    Blog.create({ title,description,content })
         .then(_blog=>res.redirect('/'))
+        .catch(err=>console.log(err));
+});
+
+app.get('/blogs/detail/update/:id', (req, res)=>{
+    Blog.findById(req.params.id)
+        .then(blog=>res.render('update', { blog }))
+        .catch(err=>console.log(err));
+});
+
+app.post('/blogs/detail/update/:id', (req, res)=>{
+    const { title, description, content } = req.body;
+    Blog.findByIdAndUpdate(req.params.id, { title, description, content })
+        .then(_data=>res.redirect('/'))
         .catch(err=>console.log(err));
 });
