@@ -9,6 +9,7 @@ dotenv.config();
 
 // middleware
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
 mongoose.connect(process.env.MONGOURI, {
     useNewUrlParser: true,
