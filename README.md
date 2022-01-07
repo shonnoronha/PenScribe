@@ -7,9 +7,9 @@
 - [x] Delete Blog
 - [x] Blog Details Page
 - [x] Blog Post Form
-- [ ] User Model
+- [x] User Model
+- [x] User Sign Up
 - [ ] User Login Form
-- [ ] User Sign Up
 - [ ] Conditional Template
 - [ ] JWT/Cookies
 - [ ] User Auth

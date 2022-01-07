@@ -1,22 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update</title>
 </head>
+
 <body>
-    <% if (blog){ %> 
-        <form action="/blogs/detail/update/<%= blog._id %> " method="post">
-            <label for="title">Title</label>
-            <input id="title" name="title" value="<%= blog.title %> " required>
-            <label for="description">description</label>
-            <input id="description" name="description" value="<%= blog.description %> " required>
-            <label for="content">content</label>
-            <input id="content" name="content" value="<%= blog.content %> " required>
-            <button>Update</button>
-        </form>
-    <% } %> 
+    <form id="<%= blog._id %>">
+        <label for="title">Title</label>
+        <input id="title" name="title" value="<%= blog.title.trim() %> " required>
+        <label for="description">description</label>
+        <input id="description" name="description" value="<%= blog.description.trim() %> " required>
+        <label for="content">content</label>
+        <input id="content" name="content" value="<%= blog.content.trim() %> " required>
+        <button>Update</button>
+    </form>
+    <h3 style="color: red;visibility: hidden;" class="error"></h3>
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async(event) => {
+            event.preventDefault();
+            const title = form.title.value.trim();
+            const description = form.description.value.trim();
+            const content = form.content.value.trim();
+            try{
+                const res = await fetch(`/blogs/detail/update/${form.id}`, {
+                    method: 'post',
+                    body: JSON.stringify({ title, description, content }),
+                    headers: { 'Content-Type': 'application/json' },
+                });
+                const data = await res.json();
+                if (data.errors) {
+                    const titleError = document.querySelector('.error');
+                    titleError.style.visibility = 'visible';
+                    titleError.textContent = data.errors;
+                    setTimeout(() => {
+                        titleError.style.visibility = 'hidden';
+                        titleError.textContent = 'brr';
+                    }, 5 * 1000);
+                } else {
+                    location.assign(data.redirect);
+                }
+            } catch(err){
+                console.log(err);
+            }
+        });
+    </script>
 </body>
+
 </html>
