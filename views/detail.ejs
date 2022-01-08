@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail</title>
-</head>
-<body>
-    <% if (blog){ %> 
-        <h1><%= blog.title %></h1>
-        <p><%= blog.description %> </p>
-        <p><%= blog.content %> </p>
-        <p>Created On : <%= blog.createdAt %> </p>
-        <p>Last Updated On : <%= blog.updatedAt %> </p>
-        <button id="<%= blog.id %> " class="deleteButton" onclick="request()">Delete Blog</button>
-        <button id="<%= blog.id %>" class="updateButton" onclick="edit()">Update Blog</button>
-    <% } %> 
+<%- include('partials/header'); -%>
+    <p class="display-3 text-center"><%= blog.title %></p>
+    <div class="container">
+        <p class="display-4"><%= blog.description %></p>
+        <p class="display-6"><%= blog.content %></p>
+        <br>
+        <p style="font-family: sans-serif" class="text-muted fs-6">Written On <%= blog.formatedDate %> </p>
+        <br>
+        <button type="button" id="<%= blog.id %>" class="updateButton btn btn-outline-success btn-lg " onclick="edit()">Update Blog</button>
+        <button type="button" id="<%= blog.id %>" class="deleteButton btn btn-outline-danger btn-lg ms-5" onclick="request()">Delete Blog</button>
+    </div>
     <script>
         const deleteButton = document.querySelector('.deleteButton');
         const updateButton = document.querySelector('.updateButton');
@@ -31,5 +24,4 @@
             location.assign(`update/${updateButton.id}`);
         }
     </script>
-</body>
-</html>
+<%- include('partials/footer'); -%>

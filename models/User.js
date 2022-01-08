@@ -31,7 +31,20 @@ userSchema.pre('save', function(next){
     const salt = bcrypt.genSaltSync();
     this.password = bcrypt.hashSync(this.password, salt);
     next();
-})
+});
+
+userSchema.statics.login = async function(username, password){
+    const user = await this.findOne({ username });
+    if (user){
+        if (bcrypt.compareSync(password, user.password)){
+            return user;
+        } else{
+            throw Error('Incorrect password!');
+        }
+    } else{
+        throw Error('Username Does Not Exist! Please Sign In!');
+    }
+};
 
 const User = mongoose.model('user', userSchema);
 

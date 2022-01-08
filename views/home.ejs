@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Home</title>
-</head>
-<body>
-    <a href="/"><h1>Blogs</h1></a>
-    <a href="/signup"><h1>Sign up</h1></a>
-    <% if (blogs) { %> 
-        <% blogs.forEach(blog=>{ %>
-            <a href="/blogs/detail/<%= blog._id %> ">
-                <p><%= blog.title %> </p>
-                <p><%= blog.description %> </p>
-                <hr>
-            </a>
-        <% }) %> 
-    <% } %> 
-    <a href="/blogs/create">create a blog</a>
-</body>
-</html>
+<%- include('partials/header'); -%>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% blogs.forEach(blog=>{ %> 
+        <div class="col pt-3">
+        <div class="card border-warning">
+            <div class="card-body">
+            <h5 class="card-title"><%= blog.title %> </h5>
+            <p class="card-text"><%= blog.description %> </p>
+            <a href="/blogs/detail/<%= blog._id %>" class="btn btn-primary">Read More...</a>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated <%= blog.relUpdate %> </small>
+            </div>
+        </div>
+        </div>
+    <% }) %>
+  </div>
+<%- include('partials/footer'); -%>
