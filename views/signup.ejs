@@ -1,38 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <style>
-        input{
-            display: block;
-        }
-        .error {
-            color: #ff0099;
-            margin: 10px 2px;
-            font-size: 0.8em;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body> 
-    <form>
-        <label for="username">username</label>
-        <input type="text" id="username" name="username" required>
-        <div class="username error"></div>
+<%- include('partials/header'); -%>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="text-center text-dark mt-5">Sign Up!</h2>
+                <div class="text-center mb-5 text-dark">Create A New Account!</div>
+                <div class="card my-5">
 
-        <label for="email">email</label>
-        <input type="text" id="email" name="email" required>
-        <div class="email error"></div>
+                    <form class="card-body cardbody-color p-lg-5 login">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="username" id="username"   aria-describedby="emailHelp"
+                                placeholder="Username" >
+                        </div>
+                        <div class="username error"></div>
 
-        <label for="password">password</label>
-        <input type="password" id="password" name="password" required>
-        <div class="password error"></div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="email" id="email"   aria-describedby="emailHelp"
+                                placeholder="Email" >
+                        </div>
+                        <div class="email error"></div>
 
-        <button type="submit">Submit</button>
-    </form>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                        </div>
+                        <div class="password error"></div>
+
+                        <button type="submit" class="btn btn-outline-success px-5 mb-5 w-100">Login</button>
+
+                        <div id="emailHelp" class="form-text text-center mb-5 text-dark">Already Have An Account? <a href="/signup" class="text-dark fw-bold"> Login</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         const form = document.querySelector('form');
         form.addEventListener('submit', async (event)=>{
@@ -62,5 +63,4 @@
             }
         });
     </script>
-</body>
-</html>
+<%- include('partials/footer'); -%>

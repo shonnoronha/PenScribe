@@ -80,6 +80,7 @@ app.post('/blogs',requireAuth, (req, res)=>{
             });
         })
         .catch(error=>{
+            console.log(error);
             const errorMessage = Object.values(error)[0].title.properties.message;
             res.json({
                 errors:errorMessage
@@ -162,7 +163,7 @@ app.post('/signup', (req, res)=>{
 });
 
 app.get('/login', (req, res)=>{
-    if (signedIn) res.locals.msg = 'Account Created! Please Log in';
+    if (signedIn) res.locals.msg = 'Account Created SuccessFully! Please Log in';
     else res.locals.msg = null;
     res.render('login');
 });
