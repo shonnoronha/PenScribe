@@ -1,16 +1,20 @@
-# 📝BLOG📝
+My [0]th Project. This was made with node, express, jwt, monogDB.
 
-### TODOS
-- [x] Blog Model
-- [x] Create Blog Form
-- [x] Edit Blog Form
-- [x] Delete Blog
-- [x] Blog Details Page
-- [x] Blog Post Form
-- [x] User Model
-- [x] User Sign Up
-- [ ] User Login Form
-- [ ] Conditional Template
-- [ ] JWT/Cookies
-- [ ] User Auth
-- [ ] User Sign Out
+## To run this project locally
+```sh
+git clone https://github.com/shonnoronha/blog.git
+cd blog
+npm i
+touch .env
+```
+
+### In your `./.env` file (without angle brackets)
+```js
+MONGOURI=<YOUR_MONGO_URI>
+JWTSECRET=<RANDOM_SECRET>
+```
+
+## To start the app on [localhost:3000](http://localhost:3000/)
+```sh
+npm run start
+```
