@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const favicon = require('serve-favicon');
 const database = require('./config/database');
 const { getUser } = require('./middleware/authMiddleware');
 const cookieParser = require('cookie-parser');
@@ -14,6 +15,7 @@ dotenv.config();
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(express.static('public'));
 app.use(cookieParser());
 
