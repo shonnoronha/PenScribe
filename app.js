@@ -24,4 +24,4 @@ app.use(blogRoutes);
 app.use(authRoutes);
 
 app.use((req, res)=>res.render('404'));
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
