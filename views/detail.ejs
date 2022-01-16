@@ -11,19 +11,5 @@
             <button type="button" id="<%= blog.id %>" class="deleteButton btn btn-outline-danger btn-lg ms-5" onclick="request()">Delete Blog</button>
         <% } %> 
     </div>
-    <script>
-        const deleteButton = document.querySelector('.deleteButton');
-        const updateButton = document.querySelector('.updateButton');
-        const request = () => {
-            fetch(`/blogs/${deleteButton.id}`, {
-                method : 'DELETE'
-            })
-                .then(data=>data.json())
-                .then(data=>location.assign(data.redirect))
-                .catch(err=>console.log(err));
-        }
-        const edit = () => {
-            location.assign(`update/${updateButton.id}`);
-        }
-    </script>
+    <script src="/js/detail.js"></script>
 <%- include('partials/footer'); -%>
