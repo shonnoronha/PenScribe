@@ -1,58 +1,50 @@
 <%- include('partials/header'); -%>
-    <link rel="stylesheet" href="/create.css">
-    <div class="container contact-form">
-        <div class="contact-image">
-            <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact" />
-        </div>
-        <form method="post">
-            <h3>Create A Blog</h3>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group m-2">
-                        <input type="text" name="title" id="title" class="form-control" placeholder="Title*" required />
-                        <p class="error"></p>
-                    </div>
-                    <div class="form-group m-2">
-                        <input type="text" name="description" id="description" class="form-control"
-                            placeholder="Description*" required />
-                    </div>
-                    <br>
-                    <div class="form-group m-2">
-                        <input type="submit" name="btnSubmit" class="btnContact" value="Submit" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <textarea name="content" id="content" class="form-control" placeholder="Blog Content*"
-                            style="width: 100%; height: 150px;"></textarea>
-                    </div>
-                </div>
-            </div>
-        </form>
+<form>
+    <div class="form-group text-center mx-5 py-3">
+        <label for="title">TITLE</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="title...">
+        <p class="error"></p>
     </div>
-    <script>
-        const form = document.querySelector('form');
-        form.addEventListener('submit', async (event)=>{
-            event.preventDefault();
-            const title = form.title.value;
-            const description = form.description.value;
-            const content = form.content.value;
-            try{
-                const res = await fetch('/blogs', {
-                    method: 'POST',
-                    body: JSON.stringify({ title, description, content }),
-                    headers: {'Content-Type': 'application/json'}
-                });
-                const data = await res.json();
-                if (data.errors){
-                    const errorField = document.querySelector('.error');
-                    errorField.textContent = data.errors;
-                } else{
-                    location.assign(data.redirect);
-                }
-            } catch(err){
-               console.log(err);
+
+    <div class="form-group text-center mx-5 py-3">
+        <label for="description">DESCRIPTION</label>
+        <input type="text" class="form-control" id="description" name="description" placeholder="description...">
+    </div>
+
+    <div class="form-group text-center mx-5 py-3">
+        <label for="content">CONTENT</label>
+        <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+    </div>
+
+    <div class="form-group text-center mx-5 py-3">
+        <button type="submit" class="btn btn-outline-success">Submit</button>
+    </div>
+    
+</form>
+
+<script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', async (event)=>{
+        event.preventDefault();
+        const title = form.title.value;
+        const description = form.description.value;
+        const content = form.content.value;
+        try{
+            const res = await fetch('/blogs', {
+                method: 'POST',
+                body: JSON.stringify({ title, description, content }),
+                headers: {'Content-Type': 'application/json'}
+            });
+            const data = await res.json();
+            if (data.errors){
+                const errorField = document.querySelector('.error');
+                errorField.textContent = data.errors;
+            } else{
+                location.assign(data.redirect);
             }
-        });
-    </script>
+        } catch(err){
+            console.log(err);
+        }
+    });
+</script>
 <%- include('partials/footer'); -%>
